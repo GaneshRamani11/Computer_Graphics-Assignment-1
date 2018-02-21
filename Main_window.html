@@ -1,0 +1,97 @@
+<!Doctype html>
+<html>
+<head>
+    <title><b>
+    Main Window for Programing Assignemnt 1
+          </b>
+    </title>
+     <meta charset='utf-8'>
+    <meta http-equiv="default-style" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            background: black;
+            backface-visibility: visible;
+            text-decoration: inherit;
+            text-emphasis-color: white;
+        }
+        h2
+        {
+            text-decoration-color: white;
+            text-emphasis-color: white;
+            color: white;
+            text-align:justify;
+            text-decoration-color: antiquewhite;
+            text-decoration-line:underline;
+            
+        }
+        ul
+        {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:black;
+        }
+        li
+        {
+            float: left;
+        }
+  li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration:inherit;
+}
+        li a:hover ,drpdown:hover .drpbtn
+        {
+            background-color: aqua;
+        }
+        li.dropdown {
+    display: inline-block;
+}
+        .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+    </head>
+    <body>
+        <ul>
+            <li class='active'><a href="Main_window.html">HOME</a></li>
+        <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">ASSIGNMENT</a>
+    <div class="dropdown-content">
+      <a href="Rectangle.html">RECTANGLE</a>
+        <a href="Line.html">LINE</a>
+        <a href="Polyline.html">POLYLINE</a>
+        <a href="Ellipse.html">ELLIPSE</a>
+        <a href="Closed_polygon.html">CLOSED POLYGON</a>
+        
+        <a href="Circle.html">CIRCLE</a>
+        <a href="#">Rubber-Banding</a>
+    </div>
+    </li>
+    </ul>
+      <h2 style="color: white"> Please Select the Respective Topics to Draw 2D Objects on a WebPage under the drop down Assignment</h2>
+     </body>
+</html>

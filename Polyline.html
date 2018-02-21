@@ -1,0 +1,205 @@
+<html>
+<head>
+    <title>Polyline</title>
+    <style>
+    body{ 
+        background-color: #b2cecf;
+    }
+    #Select{
+        position:relative;
+        color: black;
+        font-size:18px;
+        text-align:center;
+    }   
+    header{
+        text-align:center;
+        color: black;
+        font-size:3em;
+    }
+           .button4{
+            background-color:navy;
+            border: none;
+    color: white;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+    cursor: pointer;
+        }
+           ul
+        {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:black;
+        }
+        li
+        {
+            float: left;
+        }
+  li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+        li a:hover ,drpdown:hover .drpbtn
+        {
+            background-color: aqua;
+        }
+        li.dropdown {
+    display: inline-block;
+}
+        .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+    </style>
+</head>
+<body>
+    <ul>
+  <li><a href="Main_window.html">HOME</a></li>
+  
+    
+  <li class="dropdown">
+    <a href="#" class="dropbtn">ASSIGNMENT</a>
+    <div class="dropdown-content">
+        <a href="Rectangle.html">RECTANGLE</a>
+        <a href="Line.html">LINE</a>
+        <a href="Ellipse.html">ELLIPSE</a>
+        <a href="Closed_polygon.html">CLOSED POLYG0N</a>
+        <a href="#">RUBBER BANDING</a>
+      <a href="Circle.html">CIRCLE</a>
+        <li class='active'><a href="Polyline.html"></a>
+    
+      
+        
+    </div>
+  </li>
+   
+</ul>
+<header> Drawing a polyline with rubberbanding effect</header>
+<br>
+<center>
+<p id="Select">Click on screen to start drawing polyline</p>
+<br/>
+<canvas id="canvas" width="1000" height="500" style="border: solid 2px;"></canvas>
+<br/>
+<button class="button4" id="clear">Clear Canvas</button>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function () {
+        var canvas = document.getElementById("canvas"),
+            ctx = canvas.getContext("2d"),
+            offset = $("#canvas").offset(),
+            storedLines = [],
+            polyLines = [],
+            start = {x: 0, y: 0},
+            radius = 7;
+
+        function canvasPosition(e) {
+            return {
+                x: parseInt(e.clientX - offset.left),
+                y: parseInt(e.clientY - offset.top)
+            };
+        }
+
+        $("#canvas").mousedown(function (e) {
+            var pos = canvasPosition(e);
+            if (hitStartCircle(pos)) {
+                polyLines.push(storedLines);
+                storedLines = [];
+                draw();
+            }
+            else
+            {
+                storedLines.push(pos);
+                update(pos);
+            }
+        })
+        .mousemove(function (e) {
+            update(canvasPosition(e));
+        });
+
+        // Draw completed polylines
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            $.each(polyLines, function (idx, polyLine) {
+                fillPolyline(polyLine);
+            });
+        }
+
+        // Update shape currently being drawn
+        function update(position) {
+            var len = storedLines.length;
+            if(len==0) return;
+
+            draw();
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(storedLines[0].x, storedLines[0].y, radius, 0, 2 * Math.PI, false);
+            ctx.fill();
+
+            ctx.strokeStyle = "darkblue";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(storedLines[0].x, storedLines[0].y);
+            for(var i=1; i<len; ++i) {
+                ctx.lineTo(storedLines[i].x, storedLines[i].y)
+            }
+            ctx.lineTo(position.x, position.y);
+            ctx.stroke();
+        };
+
+        function hitStartCircle(pos) {
+            var start = storedLines[0] || {x:0, y:0},
+                dx = pos.x - start.x,
+                dy = pos.y - start.y;
+            return (dx * dx + dy * dy < radius * radius)
+        }
+
+        function fillPolyline(lines) {
+            ctx.strokeStyle = "yellow";
+            ctx.fillStyle = "darkblue";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(lines[0].x, lines[0].y);
+            for (var i = 0; i < lines.length; i++) {
+                ctx.lineTo(lines[i].x, lines[i].y);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        $("#clear").click(function () {
+            polyLines = [];
+            draw();
+        });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            background-color: #b2cecf;
+            background-blend-mode:exclusion;
+            background-position: center;
+        }
+        ul
+        {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:black;
+        }
+        li
+        {
+            float: left;
+        }
+  li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+        li a:hover ,drpdown:hover .drpbtn
+        {
+            background-color: aqua;
+        }
+        li.dropdown {
+    display: inline-block;
+}
+        .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+h1
+        {
+            text-align: center;
+        }
+        h3
+        {
+            text-align: center;
+        }
+.button{
+            background-color: red;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+        }
+        .button1{
+            background-color: blue;
+            border: none;
+    color: white;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+        }
+        .button2{
+            background-color: orange;
+            border: none;
+    color: white;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+        }
+        .button3{
+            background-color:brown ;
+            border: none;
+    color: white;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+        }
+        .button4{
+            background-color:navy;
+            border: none;
+    color: white;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+    cursor: pointer;
+        }
+        .button5{
+            background-color:navy;
+            border: none;
+    color: white;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+    cursor: pointer;
+        }
+        
+        .text1
+        {
+            border: none;
+    color: black;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+        }
+         .text2
+        {
+            border: none;
+    color: black;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+        }
+ .text3
+        {
+            border: none;
+    color: black;
+    padding: 5px 10px;
+            text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+        }        
+        
+          #myCanvas{
+
+position:absolute;
+left:100px;
+background-color:white;
+               outline-color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    
+<ul>
+  <li><a href="Main_window.html">HOME</a></li>
+  
+    
+  <li class="dropdown">
+    <a href="#" class="dropbtn">ASSIGNMENT</a>
+    <div class="dropdown-content">
+        <a href="Rectangle.html">RECTANGLE</a>
+        <a href="Line.html">LINE</a>
+        <a href="Ellipse.html">ELLIPSE</a>
+        <a href="Closed_polygon.html">CLOSED POLYG0N</a>
+       <a href="Polyline.html">POLYLINE</a>
+        <a href="#">RUBBER BANDING</a>
+      <li class='active'><a href="Circle.html"></a></li>
+    
+      
+        
+    </div>
+  </li>
+   
+</ul>
+<h1 style="color: black" >
+CIRCLE 
+</h1>
+    <h3>PLEASE ENTER THE RADIUS, X, Y TO DRAW</h3>
+X     :<input class=text1 id="x" >
+     
+Y      :<input class=text2 id="y">
+
+    
+    Radius : <input class=text3 id="radius">
+    
+    <br/>
+    
+<br>
+    <input class=button type="button" id="Colour" onClick="myfunction()" value="Red">
+    <input class=button1 type="button" id="Colour" onClick="myfunction1()" value="blue">
+    <input class=button2 type="button" id="Colour" onClick="myfunction2()" value="Orange">
+    <input class=button3 type="button" id="Colour" onClick="myfunction3()" value="brown">
+    <br/><br/>
+    
+    <input class=button4 type="button" id="draw" onClick="getValues()" value="DRAW">
+
+<input class=button5 type="button" id="clear" value="CLEAR">
+<br/>
+<br/>
+   
+    
+  <canvas id="myCanvas" width="1000" height="500"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script type="text/javascript">
+    
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+    function myfunction(){
+var btn=   document.createElement("button");
+       
+        ctx.fillStyle="red";
+    }
+    function myfunction1(){
+var btn=   document.createElement("button");
+       
+        ctx.fillStyle="blue";
+    }
+    function myfunction2(){
+var btn=   document.createElement("button");
+       
+        ctx.fillStyle="orange";
+    }
+    function myfunction3(){
+var btn=   document.createElement("button");
+       
+        ctx.fillStyle="brown";
+    }
+    
+
+	// associated with clear button. Clears the canvas
+	document.getElementById('clear').addEventListener('click',function() {
+		ctx.clearRect(0,0,500,500); 
+	x.value=''; y.value=''; radius.value='';
+		}, false);
+    
+
+
+function getValues()
+{
+	var x = parseInt(document.getElementById("x").value);
+	var y = parseInt(document.getElementById("y").value);
+    
+	var radius = parseInt(document.getElementById("radius").value);
+	
+	circle(radius, x,y);
+}
+
+function circle( radius, xc, yc )
+    {
+
+var p;
+var x,y;
+
+p=1-radius;
+x=0;
+y=radius;
+
+draw(x,y,xc,yc);
+
+while(x<=y)
+{
+
+x++;
+if(p<0)
+{
+
+p+=2*x+1;
+}
+else
+{
+p+=2*(x-y)+1;
+y--;
+}
+
+draw(x,y,xc,yc);
+}
+}
+
+
+function draw(x,y,xc,yc)
+{
+    
+ctx.fillRect(xc+x,yc+y,1.5,1.5);
+ctx.fillRect(xc+x,yc-y,1.5,1.5);
+ctx.fillRect(xc-x,yc+y,1.5,1.5);
+ctx.fillRect(xc-x,yc-y,1.5,1.5);
+ctx.fillRect(xc+y,yc+x,1.5,1.5);
+ctx.fillRect(xc-y,yc+x,1.5,1.5);
+ctx.fillRect(xc+y,yc-x,1.5,1.5);
+ctx.fillRect(xc-y,yc-x,1.5,1.5);
+    
+
+}
+    
+    
+    
+    </script>
+
+    </body>
+</html>
